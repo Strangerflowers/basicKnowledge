@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+        var res = [
+          {
+            frtId: "1",
+            frtName: "科学城项目",
+            frtCode: null,
+            frpType: "1414708",
+            frpName: "01计税表",
+            reportNnum: "3"
+          },
+          {
+            frtId: "1",
+            frtName: "科学城项目",
+            frtCode: null,
+            frpType: "1414709",
+            frpName: "02管理",
+            reportNnum: "3"
+          },
+          {
+            frtId: "1",
+            frtName: "科学城项目",
+            frtCode: null,
+            frpType: "1414710",
+            frpName: "03安永",
+            reportNnum: "2"
+          },
+          {
+            frtId: "1",
+            frtName: "科学城项目",
+            frtCode: null,
+            frpType: "1414711",
+            frpName: "04报税截图",
+            reportNnum: "3"
+          },
+          {
+            frtId: "1",
+            frtName: "科学城项目",
+            frtCode: null,
+            frpType: "1414712",
+            frpName: "05其他税务文件",
+            reportNnum: "1"
+          },
+          {
+            frtId: "2",
+            frtName: "奥体项目",
+            frtCode: null,
+            frpType: "1414708",
+            frpName: "01计税表",
+            reportNnum: "3"
+          },
+          {
+            frtId: "2",
+            frtName: "奥体项目",
+            frtCode: null,
+            frpType: "1414709",
+            frpName: "02管理",
+            reportNnum: "3"
+          },
+          {
+            frtId: "2",
+            frtName: "奥体项目",
+            frtCode: null,
+            frpType: "1414710",
+            frpName: "03安永",
+            reportNnum: "2"
+          },
+          {
+            frtId: "2",
+            frtName: "奥体项目",
+            frtCode: null,
+            frpType: "1414711",
+            frpName: "04报税截图",
+            reportNnum: "3"
+          },
+          {
+            frtId: "2",
+            frtName: "奥体项目",
+            frtCode: null,
+            frpType: "1414712",
+            frpName: "05其他税务文件",
+            reportNnum: "1"
+          }
+        ];
+
+        /**
+         * 根据某个key值进行分类,res是数据，key根据建名进行分类
+         * @param {*} res 要进行分类的数组对象
+         * @param {*} key 要根据的key值进行分类 (字符串)
+          @param {*} title 每个大量分类的标题 （没有这个需要可以不传）（字符串）
+         */
+        function data(res, key, title) {
+            console.log('res',res)
+          if (!title) {
+            title = key;
+          }
+          let tmpObj = {};
+          res.map(function(subArr) {
+            var o = tmpObj[subArr[key]];
+            if (!o) {
+              o = {};
+              o.data = [];
+              o.title = subArr[title];
+              o.data.push(subArr);
+              tmpObj[subArr[key]] = o;
+            } else {
+              o.data.push(subArr);
+            }
+            return o;
+          });
+          return tmpObj;
+        }
+      //调用方法
+      // let arr = data(res,'frtId','frtName')
+      //   console.log('arr',arr)
+
+      // 法二：
+        /**
+         * 根据某个key值进行分类,res是数据，key根据建名进行分类，
+         * @param {*} res 要进行分类的数组对象
+         * @param {*} key 要根据的key值进行分类 (字符串)
+         */
+      function classifiObj(data,key){
+        let Report={}
+        data.forEach((item,index)=>{
+          if(Report[item[key]]){
+            Report[item[key]].push(item)
+          }else{
+            Report[item[key]]=[]
+            Report[item[key]].push(item)
+          }
+        })
+        return Report
+      }
+      let brr = classifiObj(res,'frtId')
+      console.log('classifiObj',brr)
+    </script>
+  </body>
+</html>
